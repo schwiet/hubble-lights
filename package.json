@@ -1,0 +1,17 @@
+{
+  "name": "hubble-lights",
+  "version": "1.0.0",
+  "description": "a light controller for hubble photo booth",
+  "main": "app.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "Seth Schwiet <seth.schwiet@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "jimp": "^0.2.24",
+    "keymirror": "^0.1.1",
+    "object-assign": "^4.1.0",
+    "serialport": "^4.0.1"
+  }
+}

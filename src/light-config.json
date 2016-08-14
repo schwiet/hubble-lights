@@ -1,0 +1,13 @@
+{
+  "image-path": "./fixtures",
+  "fixtures":{
+    "/dev/cu.usbmodem1411": {
+      "scenes": {
+        "scene-1": { "interval": 1, "repeat": true  },
+        "scene-2": { "interval": 1, "repeat": true  },
+        "scene-3": { "interval": 1, "repeat": true  },
+        "scene-4": { "interval": 5, "repeat": false }
+      }
+    }
+  }
+}
