@@ -113,7 +113,7 @@ _setup_scene = function( sceneNum ){
 
     if( scene ){
 
-      blinky.loadScene( scene.frames );
+      blinky.loadScene( scene.frames, scene.interval, scene.repeat );
     }
     else{
       console.log('ERR: NO Scene', sceneNum, 'in', key );
@@ -143,7 +143,12 @@ _run_animation = function(){
       pending_frames += 1;
       fixture.blinky.showFrame( tick_num, frame_done );
     }
+
+    // TODO: this needs to cycle on highest common multiple
     tick_num += 1;
+    if( tick_num >= Number.MAX_SAFE_INTEGER ){
+      tick_num = 0;
+    }
   })();
 };
 
