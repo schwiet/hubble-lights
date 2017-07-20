@@ -40,13 +40,13 @@ var BlinkyManager = Object.assign( {}, EventEmitter.prototype, {
 
     var result = null;
 
-    if( typeof _dev_indices[ id ] = 'number' ){
+    if( typeof _dev_indices[ id ] === 'number' ){
 
       result = _dev_indices[ id ];
     }
 
     return result;
-  };
+  }
 });
 
 module.exports = BlinkyManager;

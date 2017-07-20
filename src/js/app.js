@@ -81,7 +81,7 @@ serialport.list( function ( err, ports ) {
       _blinkies.push( blinky );
       console.log ( "\n\n\nADDED A BLINKY!", blinky );
     }else{
-      console.log( 'NOTE: also found - ', port );
+      //
     }
   });
 });

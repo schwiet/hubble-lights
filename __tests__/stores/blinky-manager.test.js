@@ -1,6 +1,7 @@
 'use strict';
 
 jest.dontMock( 'hubble-lights/stores/blinky-manager' );
+jest.dontMock( 'serialport' );
 
 var Constants = require( 'hubble-lights/constants' );
 
