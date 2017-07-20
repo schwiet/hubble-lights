@@ -33,7 +33,7 @@ var ImgLoader = {
       callback( frames );
     }).catch( function( err ){
 
-      console.log( 'ERR: could not load image: ', pathToImg, err );
+      console.log( 'ERR: could not load image: ', pathToImg+sceneName, err );
     });
   }
 };

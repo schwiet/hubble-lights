@@ -1,14 +1,16 @@
 'use strict';
 var serialport = require("serialport");
-var Blinky     = require( './blinky' );
-var ImgLoader  = require( './image-loader' );
-var Config     = require( '../light-config.json' );
-var Hub        = require( './event-hub' );
+var Blinky     = require( 'hubble-lights/device/blinky' );
+var ImgLoader  = require( 'hubble-lights/image-loader' );
+var Config     = require( 'hubble-lights/light-config.json' );
+var Hub        = require( 'hubble-lights/event-hub' );
 
 // functions
 var _scene_loaded, _evt_handler, _setup_scene, _run_animation;
 
-var _connected_fixtures = [], _scenes_to_load = 0, _animation_timer;
+var _connected_fixtures = [], _scenes_to_load = 0,
+    _scenes_loaded = 0, _animation_timer,
+    _blinkies = [];
 
 console.log( "------------------------\n"+
              "Welcome to Hubble Lights\n"+
@@ -25,13 +27,18 @@ serialport.list( function ( err, ports ) {
 
   ports.forEach( function( port, index ) {
 
+    var blinky;
+    console.log( '\n\nSERIAL INFO:', port, '\n\n\n\n');
     // take advantage of the fact that the manufacturer field is populated
     if( port.manufacturer === 'Blinkinlabs' ){
+
+      blinky = { comName: port.comName };
 
       // only connect to light if we have a configutaion for it
       if( !Config.fixtures[ port.comName ] ){
 
         console.log( "ERR: found", port.comName, 'but have no config for it' );
+        blinky.configured = false;
       }
 
       // a config exists for it, go ahead and connect, then read in images
@@ -67,21 +74,39 @@ serialport.list( function ( err, ports ) {
               _scene_loaded.bind( null, port.comName, scene ) );
           }
         });
+
+        blinky.configured = true;
       }
+
+      _blinkies.push( blinky );
+      console.log ( "\n\n\nADDED A BLINKY!", blinky );
+    }else{
+      console.log( 'NOTE: also found - ', port );
     }
   });
 });
 
+// special case where there is nothing to initailize... so call it done.
+if( _scenes_to_load === 0 ){
+  Hub.setInitialized( _blinkies );
+}
+
+
+/**
+ * Called when an image file has been loaded into memory for the given
+ * fixture and scene
+ */
 _scene_loaded = function( fixture, scene, frames ){
 
   Config.fixtures[ fixture ].scenes[ scene ].frames = frames;
 
   console.log( "Scene loaded:", scene );
 
-  _scenes_to_load -= 1;
+  _scenes_loaded += 1;
 
-  if( _scenes_to_load === 0 ){
-    Hub.setInitialized();
+  if( _scenes_to_load === _scenes_loaded ){
+    Hub.setInitialized( _blinkies );
+    // now that everything is initialized, start listening to set up scenes
     Hub.addListener( _evt_handler );
   }
 };
@@ -103,6 +128,7 @@ _setup_scene = function( sceneNum ){
     clearTimeout( _animation_timer );
   }
 
+  // load each the correct scene for each fixture
   for( key in Config.fixtures ){
 
     fixture = Config.fixtures[ key ];
@@ -134,6 +160,9 @@ _run_animation = function(){
     if( pending_frames === 0 ){
       _animation_timer = setTimeout( push_frame, 20 );
     }
+    else{
+
+    }
   };
 
   (push_frame = function(){
@@ -159,3 +188,13 @@ _run_animation = function(){
 //     blink.showFrame( i++, draw_next );
 //   }, 16 );
 // }());
+
+// var x = 0;
+// var timeout_tester = function run_again(){
+//
+//   console.log( x, x, x );
+//   x += 1;
+//   setTimeout( run_again, 30 );
+// };
+//
+// timeout_tester();

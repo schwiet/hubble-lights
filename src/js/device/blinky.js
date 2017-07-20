@@ -1,8 +1,7 @@
 'use strict';
-var serialport   = require("serialport");
-var SerialPort   = serialport.SerialPort;
+var Serialport   = require("serialport");
 var EventEmitter = require('events').EventEmitter;
-var assign       = require( 'object-assign' );
+var assign       = Object.assign;
 
 var _gen_pixel;
 

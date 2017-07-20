@@ -1,6 +1,6 @@
 var readline = require('readline');
-var Hub      = require( '../event-hub' );
-var app      = require( '../app' );
+var Hub      = require( 'hubble-lights/event-hub' );
+var app      = require( 'hubble-lights/app' );
 
 var rl = readline.createInterface({
   input: process.stdin,

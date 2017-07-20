@@ -3,15 +3,44 @@
   "version": "1.0.0",
   "description": "a light controller for hubble photo booth",
   "main": "app.js",
+  "title": "Hubble Lights",
+  "icon": "assets/hubble.icns",
+  "show": "false",
   "scripts": {
-    "test": "test"
+    "test": "jest --watch",
+    "start": "node src/js/util/scene-prompt.js",
+    "prestart": "ln -snF ../src/js node_modules/hubble-lights",
+    "test:electron": "./node_modules/.bin/electron src/shell/shell.js",
+    "shell:osx": "NODE_ENV=production npm run shell && electron-packager ./shell Huebble --out=./shell/dist/ --platform=darwin --arch=x64 --version=0.34.1 --icon=./src/assets/hubble.icns",
+    "shell": "npm run shell:js",
+    "preshell": "./clean-shell.sh",
+    "shell:js": "cp -r src/js/* shell/js/",
+    "shell:rebuild": "npm rebuild --runtime=electron --target=1.1.0 --disturl=https://atom.io/download/atom-shell --build-from-source --node-pre-gyp --which-module=node_modules/serialport"
   },
   "author": "Seth Schwiet <seth.schwiet@gmail.com>",
   "license": "ISC",
   "dependencies": {
+    "events": "^1.1.1",
+    "flux": "^3.1.2",
     "jimp": "^0.2.24",
     "keymirror": "^0.1.1",
-    "object-assign": "^4.1.0",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
     "serialport": "^4.0.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "electron-packager": "^7.7.0",
+    "electron-prebuilt": "1.1.x",
+    "electron-rebuild": "^1.2.0",
+    "jest": "^20.0.4"
+  },
+  "jest": {
+    "automock": true,
+    "unmockedModulePathPatterns": [
+      "/node_modules/keymirror"
+    ]
   }
 }

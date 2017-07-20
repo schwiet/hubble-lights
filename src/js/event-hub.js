@@ -15,10 +15,11 @@ var Hub = assign( {}, EventEmitter.prototype, {
     this.on( _EVT_STR, callback );
   },
 
-  setInitialized: function(){
+  setInitialized: function( blinkies ){
 
     this.emit( _EVT_STR, {
-      event: this.Events.INITIALIZED
+      event: this.Events.INITIALIZED,
+      blinkies: blinkies
     });
   },
 
