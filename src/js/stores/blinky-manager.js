@@ -42,7 +42,7 @@ var BlinkyManager = Object.assign( {}, EventEmitter.prototype, {
 
     if( typeof _dev_indices[ id ] === 'number' ){
 
-      result = _dev_indices[ id ];
+      result = _devices[ _dev_indices[ id ] ];
     }
 
     return result;
@@ -64,17 +64,26 @@ _handle_dev_evt = function( evt ){
   case Constants.DeviceEvents.BLINKY_DISCOVERED:
 
     // if we don't already have an instance for this port
-    if( !_dev_indices[ evt.port.comName ] ){
+    if( typeof _dev_indices[ evt.port.comName ] !== 'number' ){
 
       // add the blinky to the list and note the index for easy lookup
+      // TODO: it may be that we only want to note the Blinky and not
+      //       create it. 
       blinky = Blinky( evt.port.comName );
       _devices.push( blinky );
       _dev_indices[ evt.port.comName ] = _devices.length - 1;
+      changed = true;
     }
     else{
      
       console.log( 'DEBUG: already knew about', evt.port.comName );
     }
+    break;
+
+  case Constants.DeviceEvents.BLINKY_CONNECTED:
+  case Constants.DeviceEvents.BLINKY_DISCONNECTED:
+
+    changed = true;
     break;
   
   }
