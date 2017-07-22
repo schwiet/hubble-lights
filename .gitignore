@@ -1,4 +1,6 @@
 fixtures
 node_modules
+/coverage
 /shell
 /nwjs
+.DS_Store

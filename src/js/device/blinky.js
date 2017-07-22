@@ -1,8 +1,4 @@
 'use strict';
-var Serialport   = require("serialport");
-var EventEmitter = require('events').EventEmitter;
-var assign       = Object.assign;
-
 var _gen_pixel;
 
 var apply_msg = new Buffer( 3 );
@@ -10,42 +6,27 @@ apply_msg[ 0 ] = 0;
 apply_msg[ 1 ] = 0;
 apply_msg[ 2 ] = 255;
 
-var Blinky = function( port ){
+var Blinky = function( connection, frames, optInterval, optRepeat ){
 
   var api, connection;
 
-  var _frames = [], _scene_complete = true, _interval = 1, _repeat = true,
+  var _scene_complete = false, _interval = 1, _repeat = true,
       _last_frame_num = -1;
+
+  // load interval option or default if none provided
+  if( typeof optInterval === 'number' ){
+    _interval = optInterval;
+  }
+
+  // load repeat option or default if none provided
+  if( typeof optRepeat === 'boolean' ){
+    _repeat = optRepeat
+  }
 
   /*
    * The Object returned to the client
    */
-  api = assign({
-
-    loadScene: function( frames, optInterval, optRepeat ){
-      _frames = frames;
-
-      // reset animation helpers
-      _scene_complete = false;
-      _last_frame_num = -1;
-
-      // load interval option or default if none provided
-      if( typeof optInterval === 'number' ){
-        _interval = optInterval;
-      }
-      else{
-        _interval = 1;
-      }
-
-      // load repeat option or default if none provided
-      if( typeof optRepeat === 'boolean' ){
-        _repeat = optRepeat
-      }
-      else{
-        _repeat = true;
-      }
-
-    },
+  api = {
 
     // TODO: move callback into loadFrame?
     showFrame: function( frameIndex, callback ){
@@ -88,14 +69,7 @@ var Blinky = function( port ){
         }
       }
     }
-  }, EventEmitter.prototype );
-
-  connection = new SerialPort( port, { baudrate: 115200 });
-
-  connection.on('open', function() {
-    console.log( "CONNECTED to ", port );
-    api.emit( 'CONNECTED' );
-  });
+  };
 
   return api;
 };

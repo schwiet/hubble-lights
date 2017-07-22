@@ -15,5 +15,9 @@ module.exports = {
     SCENE_EDIT_FIXTURE: null,
 
     PLAY_SCENE: null
+  }),
+
+  AppEvents: keymirror({
+    IMAGE_LOADED: null
   })
 };

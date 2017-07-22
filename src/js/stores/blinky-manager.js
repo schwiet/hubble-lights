@@ -2,7 +2,6 @@
 
 var Dispatcher   = require( 'hubble-lights/dispatcher/app-dispatcher' ),
     EventEmitter = require( 'events' ).EventEmitter,
-    Blinky       = require( 'hubble-lights/device/blinky' ),
     Constants    = require( 'hubble-lights/constants' );
 
 var _handle_dev_evt;
@@ -69,7 +68,11 @@ _handle_dev_evt = function( evt ){
       // add the blinky to the list and note the index for easy lookup
       // TODO: it may be that we only want to note the Blinky and not
       //       create it. 
-      blinky = Blinky( evt.port.comName );
+      blinky = {
+        comName: evt.port.comName,
+        name: evt.port.comName,
+        isConnected: false
+      };
       _devices.push( blinky );
       _dev_indices[ evt.port.comName ] = _devices.length - 1;
       changed = true;
@@ -81,11 +84,23 @@ _handle_dev_evt = function( evt ){
     break;
 
   case Constants.DeviceEvents.BLINKY_CONNECTED:
+
+    if( typeof _dev_indices [ evt.comName ] === 'number' ){
+
+      blinky = _devices[ _dev_indices[ evt.comName ] ];
+      blinky.isConnected = true;
+      changed = true;
+    }
+    break;
   case Constants.DeviceEvents.BLINKY_DISCONNECTED:
 
-    changed = true;
+    if( typeof _dev_indices [ evt.comName ] === 'number' ){
+
+      blinky = _devices[ _dev_indices[ evt.comName ] ];
+      blinky.isConnected = false;
+      changed = true;
+    }
     break;
-  
   }
 
   return changed;

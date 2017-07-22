@@ -1,20 +1,18 @@
 'use strict';
 
 jest.dontMock( 'hubble-lights/stores/blinky-manager' );
-jest.dontMock( 'serialport' );
 
 var Constants = require( 'hubble-lights/constants' );
 
 describe( 'Blinky Manager', function(){
 
-  var dispatcher, blinkyMgr, blinky, evt_callback, listener, unreg_lstnr;
+  var dispatcher, blinkyMgr, evt_callback, listener, unreg_lstnr;
 
   beforeEach( function(){
 
     jest.resetModules();
 
     dispatcher = require( 'hubble-lights/dispatcher/app-dispatcher' );
-    blinky     = require( 'hubble-lights/device/blinky' );
 
     blinkyMgr = require( 'hubble-lights/stores/blinky-manager' );
     evt_callback = dispatcher.register.mock.calls[0][0];
@@ -52,8 +50,8 @@ describe( 'Blinky Manager', function(){
         type: Constants.DeviceEvents.BLINKY_DISCOVERED,
         port: { comName: 'DEV-1' }}});
 
-    expect( blinky ).toBeCalledWith( 'DEV-1' );
     expect( listener ).toBeCalled();
+    expect( blinkyMgr.getDevice( 'DEV-1' ).isConnected ).toBe( false );
   });
 
   it( 'should ignore discovery of BLINKY device that is already known', function(){
@@ -70,7 +68,6 @@ describe( 'Blinky Manager', function(){
         type: Constants.DeviceEvents.BLINKY_DISCOVERED,
         port: { comName: 'DEV-1' }}});
 
-    expect( blinky.mock.calls.length ).toBe( 1 );
     expect( listener.mock.calls.length ).toBe( 1 );
   });
 
@@ -79,13 +76,26 @@ describe( 'Blinky Manager', function(){
     evt_callback({
       type: dispatcher.ActionTypes.DEVICE_ACTION_TYPE,
       action: {
+        type: Constants.DeviceEvents.BLINKY_DISCOVERED,
+        port: { comName: 'DEV-1' }}});
+
+    evt_callback({
+      type: dispatcher.ActionTypes.DEVICE_ACTION_TYPE,
+      action: {
         type: Constants.DeviceEvents.BLINKY_CONNECTED,
         comName: 'DEV-1' }});
 
     expect( listener ).toBeCalled();
+    expect( blinkyMgr.getDevice( 'DEV-1' ).isConnected ).toBe( true );
   });
 
   it( 'should fire an event when a linky is disconnected', function(){
+
+    evt_callback({
+      type: dispatcher.ActionTypes.DEVICE_ACTION_TYPE,
+      action: {
+        type: Constants.DeviceEvents.BLINKY_DISCOVERED,
+        port: { comName: 'DEV-1' }}});
 
     evt_callback({
       type: dispatcher.ActionTypes.DEVICE_ACTION_TYPE,
@@ -94,18 +104,5 @@ describe( 'Blinky Manager', function(){
         comName: 'DEV-1' }});
 
     expect( listener ).toBeCalled();
-  });
-  
-  it( 'getDevice()', function(){
-
-    blinky.mockReturnValueOnce( 'BLINKY-DEV-1' );
-
-    evt_callback({
-      type: dispatcher.ActionTypes.DEVICE_ACTION_TYPE,
-      action: {
-        type: Constants.DeviceEvents.BLINKY_DISCOVERED,
-        port: { comName: 'DEV-1' }}});
-
-    expect( blinkyMgr.getDevice( 'DEV-1' ) ).toBe( 'BLINKY-DEV-1' );
   });
 });

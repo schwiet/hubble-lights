@@ -8,6 +8,7 @@
   "show": "false",
   "scripts": {
     "test": "jest --watch",
+    "pretest": "ln -snF ../src/js node_modules/hubble-lights",
     "start": "node src/js/util/scene-prompt.js",
     "prestart": "ln -snF ../src/js node_modules/hubble-lights",
     "test:electron": "./node_modules/.bin/electron src/shell/shell.js",
@@ -35,13 +36,25 @@
     "electron-packager": "^7.7.0",
     "electron-prebuilt": "1.1.x",
     "electron-rebuild": "^1.2.0",
-    "jest": "^20.0.4"
+    "jest-cli": "^20.0.4"
   },
   "jest": {
     "automock": true,
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "src/js/**/*.js" 
+    ],
+    "coverageReporters": [
+      "lcov",
+      "text-summary"
+    ],
+    "coveragePathIgnorePatterns": [
+      "<rootDir>/node_modules/"
+    ],
     "unmockedModulePathPatterns": [
       "/node_modules/keymirror",
-      "serialport"
+      "serialport",
+      "jimp"
     ]
   }
 }
