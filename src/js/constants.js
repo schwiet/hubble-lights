@@ -14,10 +14,13 @@ module.exports = {
     SCENE_EDIT_RATE:    null,
     SCENE_EDIT_FIXTURE: null,
 
+    FIXTURE_EDIT_NAME: null,
+
     PLAY_SCENE: null
   }),
 
   AppEvents: keymirror({
-    IMAGE_LOADED: null
+    IMAGE_LOADED:  null,
+    CONFIG_LOADED: null
   })
 };
