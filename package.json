@@ -40,7 +40,8 @@
   "jest": {
     "automock": true,
     "unmockedModulePathPatterns": [
-      "/node_modules/keymirror"
+      "/node_modules/keymirror",
+      "serialport"
     ]
   }
 }

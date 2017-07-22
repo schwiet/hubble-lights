@@ -55,4 +55,124 @@ describe( 'Scenes', function(){
     expect( listener ).toBeCalled();
     expect( scenes.getScenes() ).toEqual( [ test_scene ] ); 
   });
+
+
+  it( 'should handle SCENE_EDIT_NAME events', function(){
+
+    var scene_entries,
+        renamed_scene = {
+      name: 'original name'
+    };
+
+    evt_callback({
+      type: dispatcher.ActionTypes.USER_ACTION_TYPE,
+      action:{
+        type: Constants.UserEvents.SCENE_ADDED,
+        scene: renamed_scene }});
+
+    evt_callback({
+      type: dispatcher.ActionTypes.USER_ACTION_TYPE,
+      action:{
+        type: Constants.UserEvents.SCENE_EDIT_NAME,
+        oldName: 'original name',
+        newName: 'new name' }});
+
+    expect( listener.mock.calls.length ).toBe( 2 );
+
+    scene_entries = scenes.getScenes();
+    expect( scene_entries[ 0 ].name ).toBe( 'new name' ); 
+  });
+
+  it( 'should handle SCENE_EDIT_RATE events', function(){
+
+    var scene_entries,
+        rate_scene = {
+      name: 'a-name',
+      rate: 100
+    };
+
+    evt_callback({
+      type: dispatcher.ActionTypes.USER_ACTION_TYPE,
+      action:{
+        type: Constants.UserEvents.SCENE_ADDED,
+        scene: rate_scene }});
+
+    evt_callback({
+      type: dispatcher.ActionTypes.USER_ACTION_TYPE,
+      action:{
+        type: Constants.UserEvents.SCENE_EDIT_RATE,
+        name: 'a-name',
+        rate: 200 }});
+
+    expect( listener.mock.calls.length ).toBe( 2 );
+
+    scene_entries = scenes.getScenes();
+    expect( scene_entries[ 0 ].rate ).toBe( 200 ); 
+  });
+
+  it( 'should handle SCENE_EDIT_FIXTURE events', function(){
+
+    var scene_entries, fixture,
+        fixture_scene = {
+      name: 'a-name',
+      fixtures: {
+        devComName: {
+          skipCount: 0,
+          loop: true,
+          imgId: 'a/path'
+        }
+      }
+    };
+
+    evt_callback({
+      type: dispatcher.ActionTypes.USER_ACTION_TYPE,
+      action:{
+        type: Constants.UserEvents.SCENE_ADDED,
+        scene: fixture_scene }});
+
+    evt_callback({
+      type: dispatcher.ActionTypes.USER_ACTION_TYPE,
+      action:{
+        type: Constants.UserEvents.SCENE_EDIT_FIXTURE,
+        name: 'a-name',
+        fixture: { name: 'devComName', skipCount: 1, loop: false, imgId: 'different' }}});
+
+    expect( listener.mock.calls.length ).toBe( 2 );
+
+    scene_entries = scenes.getScenes();
+    fixture = scene_entries[ 0 ].fixtures[ 'devComName' ];
+    expect( fixture.skipCount ).toBe( 1 ); 
+    expect( fixture.loop ).toBe( false ); 
+    expect( fixture.imgId ).toBe( 'different' ); 
+  });
+
+  it( 'should handle SCENE_EDIT_FIXTURE event even when not existing', function(){
+
+    var scene_entries, fixture,
+        fixture_scene = {
+      name: 'a-name',
+      fixtures: {}
+    };
+
+    evt_callback({
+      type: dispatcher.ActionTypes.USER_ACTION_TYPE,
+      action:{
+        type: Constants.UserEvents.SCENE_ADDED,
+        scene: fixture_scene }});
+
+    evt_callback({
+      type: dispatcher.ActionTypes.USER_ACTION_TYPE,
+      action:{
+        type: Constants.UserEvents.SCENE_EDIT_FIXTURE,
+        name: 'a-name',
+        fixture: { name: 'devComName', skipCount: 1, loop: false, imgId: 'different' }}});
+
+    expect( listener.mock.calls.length ).toBe( 2 );
+
+    scene_entries = scenes.getScenes();
+    fixture = scene_entries[ 0 ].fixtures[ 'devComName' ];
+    expect( fixture.skipCount ).toBe( 1 ); 
+    expect( fixture.loop ).toBe( false ); 
+    expect( fixture.imgId ).toBe( 'different' ); 
+  });
 });

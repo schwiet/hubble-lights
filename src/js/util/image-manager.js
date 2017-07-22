@@ -1,0 +1,31 @@
+'use strict';
+
+var Dispatcher   = require( 'hubble-lights/dispatcher/app-dispatcher' ),
+    Constants    = require( 'hubble-lights/constants' );
+
+// STATE
+
+
+// FUNCTIONS
+
+//////////////////////////////////////////////////////////////////
+//
+//////////////////////////////////////////////////////////////////
+var ImageManager = {
+  
+  getRGB: function( img_path ){
+
+  }
+};
+module.exports = ImageManager;
+
+//////////////////////////////////////////////////////////////////
+//
+//////////////////////////////////////////////////////////////////
+
+ImageManager.dispatchToken = Dispatcher.register( function( payload ){
+
+  switch( payload.type ){
+
+  }
+});

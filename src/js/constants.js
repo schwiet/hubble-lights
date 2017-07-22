@@ -11,7 +11,9 @@ module.exports = {
   UserEvents: keymirror({
     SCENE_ADDED:        null,
     SCENE_EDIT_NAME:    null,
-    SCENE_EDIT_LOOP:    null,
-    SCENE_EDIT_FIXTURE: null
+    SCENE_EDIT_RATE:    null,
+    SCENE_EDIT_FIXTURE: null,
+
+    PLAY_SCENE: null
   })
 };
