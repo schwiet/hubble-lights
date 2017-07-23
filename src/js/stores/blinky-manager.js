@@ -45,6 +45,11 @@ var BlinkyManager = Object.assign( {}, EventEmitter.prototype, {
     }
 
     return result;
+  },
+
+  getDevices: function(){
+
+    return _devices;
   }
 });
 

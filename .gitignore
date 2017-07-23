@@ -1,6 +1,8 @@
 fixtures
+src/js/config
 node_modules
 /coverage
 /shell
 /nwjs
+/dist
 .DS_Store

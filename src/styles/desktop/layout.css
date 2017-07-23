@@ -1,0 +1,10 @@
+.desk-layout-scenes{
+  height: 7em;
+  background-color: white;
+  position: relative;
+}
+
+.desk-layout-fixtures{
+  flex: 1;
+  position: relative;
+}
