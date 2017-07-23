@@ -17,6 +17,10 @@ describe( 'Config Manager', function(){
 
   describe( 'no initial config file', function(){
     beforeEach( function(){
+      jest.mock( 'hubble-lights/config/hubble-config.json', function(){
+
+        throw new Error( 'file does not exist'  );
+      }, {virtual: true} );
 
       configMgr = require( 'hubble-lights/util/config-manager' );
       evt_callback = dispatcher.register.mock.calls[0][0];
@@ -73,11 +77,11 @@ describe( 'Config Manager', function(){
     it( 'should fire a FIXTURE_EDIT_NAME event for each fixture', function(){
 
       expect( dispatcher.handleUserAction ).toBeCalledWith({
-        type: Constants.UserEvents.FIXTURE_EDIT_NAME, fixture: { comName: 'com-1', userName: 'l-1' }
+        type: Constants.UserEvents.FIXTURE_EDIT_NAME, comName: 'com-1', userName: 'l-1'
       });
 
       expect( dispatcher.handleUserAction ).toBeCalledWith({
-        type: Constants.UserEvents.FIXTURE_EDIT_NAME, fixture: { comName: 'com-2', userName: 'l-2' }
+        type: Constants.UserEvents.FIXTURE_EDIT_NAME, comName: 'com-2', userName: 'l-2'
       });
     });
   });

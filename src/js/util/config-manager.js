@@ -33,7 +33,8 @@ try{
 
     Dispatcher.handleUserAction({
       type: Constants.UserEvents.FIXTURE_EDIT_NAME,
-      fixture: fixture });
+      comName: fixture.comName,
+      userName: fixture.userName });
   });
 }
 catch( e ){

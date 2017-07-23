@@ -1,0 +1,14 @@
+.desktop-scenes{
+  align-items: center; 
+  padding-left: 2em;
+  padding-right: 2em;
+}
+
+.desktop-scenes-entry{
+  width: 10em;
+  height: 70%;
+  background-color: #bbb;
+  border-radius: 12px;
+  margin-left: 1.5em;
+  margin-right: 1.5em;
+}

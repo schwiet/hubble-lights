@@ -4,6 +4,10 @@
   position: relative;
 }
 
+.desk-layout-selected-scene{
+  height: 7em;
+}
+
 .desk-layout-fixtures{
   flex: 1;
   position: relative;

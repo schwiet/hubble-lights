@@ -16,6 +16,7 @@ module.exports = {
 
     FIXTURE_EDIT_NAME: null,
 
+    SELECT_SCENE: null,
     PLAY_SCENE: null
   }),
 

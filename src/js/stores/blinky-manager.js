@@ -4,7 +4,7 @@ var Dispatcher   = require( 'hubble-lights/dispatcher/app-dispatcher' ),
     EventEmitter = require( 'events' ).EventEmitter,
     Constants    = require( 'hubble-lights/constants' );
 
-var _handle_dev_evt;
+var _handle_dev_evt, _handle_user_evt, _add_if_new;
 
 var _devices = [],
     _dev_indices = {};
@@ -59,6 +59,47 @@ module.exports = BlinkyManager;
 //
 /////////////////////////////////////////////////////////////////
 
+_add_if_new = function( comName, name ){
+
+  var changed = false, blinky;
+  // if we don't already have an instance for this port
+  if( typeof _dev_indices[ comName ] !== 'number' ){
+
+    // add the blinky to the list and note the index for easy lookup
+    // TODO: it may be that we only want to note the Blinky and not
+    //       create it. 
+    blinky = {
+      comName: comName,
+      name: name,
+      isConnected: false
+    };
+    _devices.push( blinky );
+    _dev_indices[ comName ] = _devices.length - 1;
+    changed = true;
+  }
+  else{
+   
+    console.log( 'DEBUG: already knew about', comName );
+  }
+
+  return changed;
+};
+
+_handle_user_evt = function( evt ){
+
+  var changed = false;
+
+  switch( evt.type ){
+
+  case Constants.UserEvents.FIXTURE_EDIT_NAME:
+
+    changed = _add_if_new( evt.comName, evt.userName );
+    break;
+  }
+
+  return changed;
+};
+
 _handle_dev_evt = function( evt ){
 
   var blinky, changed = false;
@@ -67,25 +108,7 @@ _handle_dev_evt = function( evt ){
     
   case Constants.DeviceEvents.BLINKY_DISCOVERED:
 
-    // if we don't already have an instance for this port
-    if( typeof _dev_indices[ evt.port.comName ] !== 'number' ){
-
-      // add the blinky to the list and note the index for easy lookup
-      // TODO: it may be that we only want to note the Blinky and not
-      //       create it. 
-      blinky = {
-        comName: evt.port.comName,
-        name: evt.port.comName,
-        isConnected: false
-      };
-      _devices.push( blinky );
-      _dev_indices[ evt.port.comName ] = _devices.length - 1;
-      changed = true;
-    }
-    else{
-     
-      console.log( 'DEBUG: already knew about', evt.port.comName );
-    }
+    changed = _add_if_new( evt.port.comName ); 
     break;
 
   case Constants.DeviceEvents.BLINKY_CONNECTED:
@@ -119,6 +142,9 @@ BlinkyManager.dispatchToken = Dispatcher.register( function( payload ){
     
   case Dispatcher.ActionTypes.DEVICE_ACTION_TYPE:
       _changed = _handle_dev_evt( payload.action );
+    break;
+  case Dispatcher.ActionTypes.USER_ACTION_TYPE:
+      _changed = _handle_user_evt( payload.action );
     break;
   }
 

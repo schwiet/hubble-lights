@@ -54,6 +54,19 @@ describe( 'Blinky Manager', function(){
     expect( blinkyMgr.getDevice( 'DEV-1' ).isConnected ).toBe( false );
   });
 
+  it( 'should handle FIXTURE_EDIT_NAME of new BLINKY devices', function(){
+
+    evt_callback({
+      type: dispatcher.ActionTypes.USER_ACTION_TYPE,
+      action: {
+        type: Constants.UserEvents.FIXTURE_EDIT_NAME,
+        comName: 'DEV-1',
+        userName: 'U-NAME-1' }});
+
+    expect( listener ).toBeCalled();
+    expect( blinkyMgr.getDevice( 'DEV-1' ).isConnected ).toBe( false );
+  });
+
   it( 'should ignore discovery of BLINKY device that is already known', function(){
 
     evt_callback({
