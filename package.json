@@ -18,7 +18,10 @@
     "preshell": "./clean-shell.sh",
     "shell:js": "cp -r src/js/* shell/js/",
     "shell:rebuild": "npm rebuild --runtime=electron --target=1.1.0 --disturl=https://atom.io/download/atom-shell --build-from-source --node-pre-gyp --which-module=node_modules/serialport",
-    "pack": "webpack -p"
+    "pack": "webpack -p",
+    "prepack": "./clean-node-webkit.sh",
+    "bb": "babel src/js/ --out-dir nwjs/js/",
+    "prebb": "rm node_modules/hubble-lights && ./clean-node-webkit.sh" 
   },
   "author": "Seth Schwiet <seth.schwiet@gmail.com>",
   "license": "ISC",
@@ -44,6 +47,7 @@
     "electron-rebuild": "^1.2.0",
     "jest-cli": "^20.0.4",
     "loglevel": "^1.4.1",
+    "nw-gyp": "^3.4.0",
     "style-loader": "^0.18.2",
     "webpack": "^3.3.0",
     "webpack-dev-server": "^2.6.0"

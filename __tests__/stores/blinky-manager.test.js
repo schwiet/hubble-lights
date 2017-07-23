@@ -37,7 +37,7 @@ describe( 'Blinky Manager', function(){
       type: dispatcher.ActionTypes.DEVICE_ACTION_TYPE,
       action: {
         type: Constants.DeviceEvents.BLINKY_DISCOVERED,
-        port: { comName: 'DEV-1' }}});
+        comName: 'DEV-1' }});
 
     expect( listener ).not.toBeCalled();  
   });
@@ -48,7 +48,7 @@ describe( 'Blinky Manager', function(){
       type: dispatcher.ActionTypes.DEVICE_ACTION_TYPE,
       action: {
         type: Constants.DeviceEvents.BLINKY_DISCOVERED,
-        port: { comName: 'DEV-1' }}});
+        comName: 'DEV-1' }});
 
     expect( listener ).toBeCalled();
     expect( blinkyMgr.getDevice( 'DEV-1' ).isConnected ).toBe( false );
@@ -73,13 +73,13 @@ describe( 'Blinky Manager', function(){
       type: dispatcher.ActionTypes.DEVICE_ACTION_TYPE,
       action: {
         type: Constants.DeviceEvents.BLINKY_DISCOVERED,
-        port: { comName: 'DEV-1' }}});
+        comName: 'DEV-1' }});
 
     evt_callback({
       type: dispatcher.ActionTypes.DEVICE_ACTION_TYPE,
       action: {
         type: Constants.DeviceEvents.BLINKY_DISCOVERED,
-        port: { comName: 'DEV-1' }}});
+        comName: 'DEV-1' }});
 
     expect( listener.mock.calls.length ).toBe( 1 );
   });
@@ -90,7 +90,7 @@ describe( 'Blinky Manager', function(){
       type: dispatcher.ActionTypes.DEVICE_ACTION_TYPE,
       action: {
         type: Constants.DeviceEvents.BLINKY_DISCOVERED,
-        port: { comName: 'DEV-1' }}});
+        comName: 'DEV-1' }});
 
     evt_callback({
       type: dispatcher.ActionTypes.DEVICE_ACTION_TYPE,
@@ -108,7 +108,7 @@ describe( 'Blinky Manager', function(){
       type: dispatcher.ActionTypes.DEVICE_ACTION_TYPE,
       action: {
         type: Constants.DeviceEvents.BLINKY_DISCOVERED,
-        port: { comName: 'DEV-1' }}});
+        comName: 'DEV-1' }});
 
     evt_callback({
       type: dispatcher.ActionTypes.DEVICE_ACTION_TYPE,

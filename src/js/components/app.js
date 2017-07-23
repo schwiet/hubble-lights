@@ -2,7 +2,7 @@
 
 import React from 'react';
 import ReactDom from 'react-dom';
-import styles from 'styles/app-styles.css';
+//import styles from 'hubble-styles/app-styles.css';
 
 import Scenes from 'hubble-lights/stores/scenes';
 import Fixtures from 'hubble-lights/stores/blinky-manager';
@@ -28,7 +28,7 @@ class HubbleUi extends React.Component {
     });
 
     Fixtures.addListener( () => {
-      this.setState({ fixtures: Fixtures.getFixtures() });
+      this.setState({ fixtures: Fixtures.getDevices() });
     });
   }
 

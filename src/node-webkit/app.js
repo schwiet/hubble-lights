@@ -1,23 +1,23 @@
-var Hub       = require( 'hubble-lights/event-hub' );
-var HubbleApp = require( 'hubble-lights/app' );
+//var Hub       = require( 'hubble-lights/event-hub' );
+//var HubbleApp = require( 'hubble-lights/app' );
 
 var bl_menu, menu;
 
-Hub.addListener( function( evt ){
-  switch( evt.event ){
-    case Hub.Events.INITIALIZED:
-
-      evt.blinkies.forEach( function( blinky ){
-
-        console.log( "adding blinky menu:", blinky );
-
-        bl_menu.append( new nw.MenuItem({ label: (
-            blinky.comName + ( blinky.configured ? '' : ' ( no config )' )
-        )}));
-      });
-    break;
-  }
-});
+//Hub.addListener( function( evt ){
+//  switch( evt.event ){
+//    case Hub.Events.INITIALIZED:
+//
+//      evt.blinkies.forEach( function( blinky ){
+//
+//        console.log( "adding blinky menu:", blinky );
+//
+//        bl_menu.append( new nw.MenuItem({ label: (
+//            blinky.comName + ( blinky.configured ? '' : ' ( no config )' )
+//        )}));
+//      });
+//    break;
+//  }
+//});
 
 
 // Create a shortcut with |option|.
@@ -69,7 +69,7 @@ menu.append( new nw.MenuItem({
 
 nw.Window.open( 'index.html', {}, function(win){
   console.log("loaded" );
-  win.hide();
-  // win.showDevTools();
+//  win.hide();
+  win.showDevTools();
   win.menu = menu;
 });

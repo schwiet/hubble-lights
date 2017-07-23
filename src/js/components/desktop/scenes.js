@@ -3,7 +3,7 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 import PropTypes from 'prop-types';
-import styles from 'styles/desktop/scenes.css';
+//import styles from 'styles/desktop/scenes.css';
 
 import Scene from 'hubble-lights/components/elements/scene';
 

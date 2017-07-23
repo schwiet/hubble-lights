@@ -3,17 +3,18 @@ echo Cleaning nwjs/ directory
 mkdir -p nwjs/
 rm -r nwjs/*
 mkdir -p nwjs/js/
-mkdir -p nwjs/fixtures/
-mkdir -p nwjs/node_modules/
+mkdir -p nwjs/styles/
 mkdir -p nwjs/assets/
-cp src/node-webkit/app.js nwjs/
+mkdir -p nwjs/node_modules/
 # cp src/js/light-config.json nwjs/js/
-cp src/shell/index.html nwjs/index.html
-cp -r fixtures/* nwjs/fixtures/ #temporary
-cp -r src/js/* nwjs/js/
+cp src/node-webkit/index.html nwjs/index.html
+cp src/node-webkit/app.js nwjs/app.js
+cp src/node-webkit/system-loader.js nwjs/system-loader.js
+# cp -r fixtures/* nwjs/fixtures/ #temporary
 cp src/assets/* nwjs/assets/
 cp package.json nwjs/
-
+cat src/styles/app-styles.css src/styles/**/*.css > nwjs/styles/styles.css
+cp -r node_modules/* nwjs/node_modules/
 # copy third-party dependencies
 # cp -r node_modules/keymirror shell/node_modules/
 # cp -r node_modules/object-assign shell/node_modules/
@@ -36,7 +37,7 @@ cp package.json nwjs/
 # cp -r node_modules/tinycolor2 shell/node_modules/
 # cp -r node_modules/stream-to-buffer shell/node_modules/
 # cp -r node_modules/stream-to shell/node_modules/
-cp -r node_modules/* nwjs/node_modules/
+# cp -r node_modules/* nwjs/node_modules/
 # symlink source code into node_modules so require()s work
 ln -snF ../js nwjs/node_modules/hubble-lights
 echo done cleaning...

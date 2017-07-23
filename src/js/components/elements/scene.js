@@ -4,7 +4,7 @@ import React from 'react';
 import ReactDom from 'react-dom';
 import PropTypes from 'prop-types';
 
-import styles from 'styles/elements/scene.css';
+//import styles from 'styles/elements/scene.css';
 
 class Scene extends React.Component{
 

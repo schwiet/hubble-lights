@@ -4,7 +4,7 @@ import React from 'react';
 import ReactDom from 'react-dom';
 import PropTypes from 'prop-types';
 
-import styles from 'styles/desktop/layout.css';
+//import styles from 'styles/desktop/layout.css';
 
 import Scenes from 'hubble-lights/components/desktop/scenes';
 import Fixtures from 'hubble-lights/components/desktop/fixtures';

@@ -108,7 +108,7 @@ _handle_dev_evt = function( evt ){
     
   case Constants.DeviceEvents.BLINKY_DISCOVERED:
 
-    changed = _add_if_new( evt.port.comName ); 
+    changed = _add_if_new( evt.comName ); 
     break;
 
   case Constants.DeviceEvents.BLINKY_CONNECTED:
@@ -141,6 +141,7 @@ BlinkyManager.dispatchToken = Dispatcher.register( function( payload ){
   switch( payload.type ){
     
   case Dispatcher.ActionTypes.DEVICE_ACTION_TYPE:
+    console.log( "DEVICE ACTION!", payload.action );
       _changed = _handle_dev_evt( payload.action );
     break;
   case Dispatcher.ActionTypes.USER_ACTION_TYPE:

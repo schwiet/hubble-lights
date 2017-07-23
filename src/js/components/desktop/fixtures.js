@@ -3,7 +3,7 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 import PropTypes from 'prop-types';
-import styles from 'styles/desktop/fixtures.css';
+//import styles from 'styles/desktop/fixtures.css';
 
 class Fixtures extends React.Component{
 
