@@ -41,6 +41,7 @@ _start_scene = function( scene ){
       frames  = ImgMgr.getRgbFrames( fixture.imgId ); 
 
       if( con && frames ){
+        console.log( "DEBUG - Scene Player: Loading image for:", comName );
         blinkies.push( Blinky( con, frames, fixture.skipCount, fixture.loop ) );
       }
       else{
@@ -54,6 +55,7 @@ _start_scene = function( scene ){
   frame_done = function(){
     pending_frames -= 1;
 
+//    console.log( 'subtracting:', pending_frames );
     // if all of the fixtures have sent their frame info and this animation is
     // still running, do the next
     if( pending_frames === 0 && scene_handle === _timer_handle ){
@@ -72,6 +74,7 @@ _start_scene = function( scene ){
        blinky = blinkies[ i ];
        pending_frames += 1;
        blinky.showFrame( tick_num, frame_done );
+ //      console.log( 'adding:', pending_frames );
      } 
 
     // TODO: this should cycle on the highest commone multiple of image lengths
@@ -81,6 +84,7 @@ _start_scene = function( scene ){
     }
   };
 
+  _current_scene_name = scene.name;
   push_frame();
 };
 
@@ -94,6 +98,13 @@ _handle_user_evt = function( evt ){
       clearTimeout( _timer_handle );
       _timer_handle = -1; // gets reset to negative integer, since this is not valid
       _start_scene( evt.scene );
+    }
+    break;
+  case Constants.UserEvents.SELECT_SCENE:
+    if( evt.sceneName !== _current_scene_name ){
+      // stop the current scene
+      clearTimeout( _timer_handle );
+      _timer_handle = -1; // gets reset to negative integer, since this is not valid
     }
     break;
   }

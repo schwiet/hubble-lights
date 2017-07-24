@@ -50,6 +50,11 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
+body {
+  line-height: 1;
+  font-family: 'Avenir Next', Avenir, 'Helvetica Neue', 'Lato', 'Segoe UI',
+  Helvetica, Arial, sans-serif;
+}
 
 .container{
   background-color: #191919;

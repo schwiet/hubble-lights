@@ -5,30 +5,15 @@
       "rate": 20,
       "hotkey": "1",
       "fixtures": {
-        "com-1": {
+        "/dev/cu.usbmodem1421": {
           "skipCount": 0,
           "loop": true,
-          "imgId": "img-1"
+          "imgId": "scene-1.jpg"
         },
-        "com-2": {
+        "/dev/cu.usbmodem1411": {
           "skipCount": 0,
           "loop": true,
-          "imgId": "img-2"
-        },
-        "com-3": {
-          "skipCount": 0,
-          "loop": true,
-          "imgId": "img-3"
-        },
-        "com-4": {
-          "skipCount": 0,
-          "loop": true,
-          "imgId": "img-4"
-        },
-        "com-5": {
-          "skipCount": 0,
-          "loop": true,
-          "imgId": "img-5"
+          "imgId": "scene-1.jpg"
         }
       }
     },
@@ -37,30 +22,15 @@
       "rate": 20,
       "hotkey": "1",
       "fixtures": {
-        "com-1": {
+        "/dev/cu.usbmodem1411": {
           "skipCount": 0,
           "loop": true,
-          "imgId": "img-1"
+          "imgId": "scene-5.jpg"
         },
-        "com-2": {
+        "/dev/cu.usbmodem1421": {
           "skipCount": 0,
           "loop": true,
-          "imgId": "img-2"
-        },
-        "com-3": {
-          "skipCount": 0,
-          "loop": true,
-          "imgId": "img-3"
-        },
-        "com-4": {
-          "skipCount": 0,
-          "loop": true,
-          "imgId": "img-4"
-        },
-        "com-5": {
-          "skipCount": 0,
-          "loop": true,
-          "imgId": "img-5"
+          "imgId": "scene-5.jpg"
         }
       }
     },
@@ -69,39 +39,21 @@
       "rate": 20,
       "hotkey": "1",
       "fixtures": {
-        "com-1": {
+        "/dev/cu.usbmodem1411": {
           "skipCount": 0,
           "loop": true,
-          "imgId": "img-1"
+          "imgId": "scene-3.jpg"
         },
-        "com-2": {
+        "/dev/cu.usbmodem1421": {
           "skipCount": 0,
           "loop": true,
-          "imgId": "img-2"
-        },
-        "com-3": {
-          "skipCount": 0,
-          "loop": true,
-          "imgId": "img-3"
-        },
-        "com-4": {
-          "skipCount": 0,
-          "loop": true,
-          "imgId": "img-4"
-        },
-        "com-5": {
-          "skipCount": 0,
-          "loop": true,
-          "imgId": "img-5"
+          "imgId": "scene-3.jpg"
         }
       }
     }
   ],
   "fixtures": [
-    { "comName": "com-1", "userName": "lens-1" },
-    { "comName": "com-2", "userName": "lens-2" },
-    { "comName": "com-3", "userName": "lens-3" },
-    { "comName": "com-4", "userName": "below screen" },
-    { "comName": "com-5", "userName": "below ctrls" }
+    { "comName": "/dev/cu.usbmodem1411", "userName": "lens-1" },
+    { "comName": "/dev/cu.usbmodem1421", "userName": "lens-2" }
   ]
 }

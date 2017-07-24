@@ -3,6 +3,7 @@
 var Dispatcher   = require( 'hubble-lights/dispatcher/app-dispatcher' ),
     Constants    = require( 'hubble-lights/constants' ),
     Process      = require( 'process' ),
+    fs           = require( 'fs' ),
     Jimp         = require( 'jimp' );
 
 // STATE
@@ -20,7 +21,7 @@ var ImageManager = {
     return _img_buffers[ img_name ] || null;
   },
 
-  IMG_PATH: Process.cwd()+'config/images/';
+  IMG_PATH: Process.cwd()+'/example_config/images/'
 };
 module.exports = ImageManager;
 
@@ -96,10 +97,17 @@ _handle_user_evt = function( evt ){
   switch( evt.type ){
 
   case Constants.UserEvents.SCENE_ADDED:
-    _skim_scene( evt.scene );
+    //_skim_scene( evt.scene );
     break;
   }
 };
+
+// auto-load images if possible
+if( fs.existsSync( ImageManager.IMG_PATH ) ){
+
+  let files = fs.readdirSync( ImageManager.IMG_PATH );
+  files.forEach( _load_img );
+}
 
 ImageManager.dispatchToken = Dispatcher.register( function( payload ){
 

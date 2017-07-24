@@ -4,14 +4,14 @@ mkdir -p nwjs/
 rm -r nwjs/*
 mkdir -p nwjs/js/
 mkdir -p nwjs/styles/
-mkdir -p nwjs/config/
+mkdir -p nwjs/example_config/
 mkdir -p nwjs/node_modules/
 # cp src/js/light-config.json nwjs/js/
 cp src/node-webkit/index.html nwjs/index.html
 cp src/node-webkit/app.js nwjs/app.js
 cp src/node-webkit/system-loader.js nwjs/system-loader.js
 # cp -r fixtures/* nwjs/fixtures/ #temporary
-cp example_config/* nwjs/config/
+cp -r example_config/* nwjs/example_config/
 cp package.json nwjs/
 cat src/styles/app-styles.css src/styles/**/*.css > nwjs/styles/styles.css
 
@@ -23,5 +23,5 @@ cp -r node_modules/* nwjs/node_modules/
 
 # finally create our own symlinks for requires
 ln -snF ../js nwjs/node_modules/hubble-lights
-ln -snF ../config nwjs/node_modules/hubble-config
+ln -snF ../example_config nwjs/node_modules/hubble-config
 echo done cleaning...

@@ -1,1 +1,2 @@
-require( 'hubble-lights/device/connection-manager' );
+require( 'hubble-lights/control/scene-player' );
+require( 'hubble-lights/util/config-manager' );

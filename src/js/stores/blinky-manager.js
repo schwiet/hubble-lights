@@ -108,7 +108,7 @@ _handle_dev_evt = function( evt ){
     
   case Constants.DeviceEvents.BLINKY_DISCOVERED:
 
-    changed = _add_if_new( evt.comName ); 
+    changed = _add_if_new( evt.comName, evt.comName ); 
     break;
 
   case Constants.DeviceEvents.BLINKY_CONNECTED:

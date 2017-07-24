@@ -15,7 +15,9 @@ var Blinky = function( connection, frames, optInterval, optRepeat ){
 
   // load interval option or default if none provided
   if( typeof optInterval === 'number' ){
-    _interval = optInterval;
+    // adding one, because I was silly and called this "skipCount"
+    // in the config file...
+    _interval = optInterval + 1;
   }
 
   // load repeat option or default if none provided
@@ -42,7 +44,7 @@ var Blinky = function( connection, frames, optInterval, optRepeat ){
         modded_frame = Math.round( frameIndex / _interval );
 
         // if it's the last frame and we're not supposed to repeat
-        if( !_repeat && modded_frame >= _frames.length ){
+        if( !_repeat && modded_frame >= frames.length ){
           _scene_complete = true;
         }
 
@@ -50,12 +52,11 @@ var Blinky = function( connection, frames, optInterval, optRepeat ){
         else{
 
           // wrap the number so it stays within the number of frames
-          modded_frame = modded_frame % _frames.length;
+          modded_frame = modded_frame % frames.length;
 
           // if it's a new frame, go ahead and draw it
           if( modded_frame !== _last_frame_num ){
-            // console.log( modded_frame );
-            frame = _frames[ modded_frame ];
+            frame = frames[ modded_frame ];
             // console.log( "SENDING:", frame );
             connection.write( Buffer.concat( frame ) );
             connection.write( apply_msg, callback );

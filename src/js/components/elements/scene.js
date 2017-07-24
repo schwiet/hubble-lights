@@ -21,7 +21,7 @@ class Scene extends React.Component{
       <div className='element-scene'
            onClick={select}>
         <h3 className='element-scene-number'>
-          Scene {this.props.index}
+          Scene {this.props.index+1}
         </h3>
         <h2 className='element-scene-name'>
           {this.props.scene.name}

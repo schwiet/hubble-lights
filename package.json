@@ -22,8 +22,9 @@
     "shell:rebuild": "npm rebuild --runtime=electron --target=1.1.0 --disturl=https://atom.io/download/atom-shell --build-from-source --node-pre-gyp --which-module=node_modules/serialport",
     "pack": "webpack -p",
     "prepack": "./clean-node-webkit.sh",
-    "bb": "babel src/js/ --out-dir nwjs/js/",
-    "prebb": "./clean-node-webkit.sh"
+    "build": "babel src/js/ --out-dir nwjs/js/",
+    "prebuild": "./clean-node-webkit.sh && npm run bb",
+    "bb": "babel src/js/ --out-dir nwjs/js/"
   },
   "author": "Seth Schwiet <seth.schwiet@gmail.com>",
   "license": "ISC",

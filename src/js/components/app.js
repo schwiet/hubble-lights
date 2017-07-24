@@ -10,7 +10,7 @@ import Client from 'hubble-lights/stores/client-state';
 
 import DesktopLayout from 'hubble-lights/components/desktop/layout';
 
-import 'hubble-lights/util/config-manager';
+//import 'hubble-lights/util/config-manager';
 
 class HubbleUi extends React.Component {
 
