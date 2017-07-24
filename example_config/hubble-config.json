@@ -1,0 +1,107 @@
+{
+  "scenes": [
+    {
+      "name": "TAKE PIC",
+      "rate": 20,
+      "hotkey": "1",
+      "fixtures": {
+        "com-1": {
+          "skipCount": 0,
+          "loop": true,
+          "imgId": "img-1"
+        },
+        "com-2": {
+          "skipCount": 0,
+          "loop": true,
+          "imgId": "img-2"
+        },
+        "com-3": {
+          "skipCount": 0,
+          "loop": true,
+          "imgId": "img-3"
+        },
+        "com-4": {
+          "skipCount": 0,
+          "loop": true,
+          "imgId": "img-4"
+        },
+        "com-5": {
+          "skipCount": 0,
+          "loop": true,
+          "imgId": "img-5"
+        }
+      }
+    },
+    {
+      "name": "BTN 1",
+      "rate": 20,
+      "hotkey": "1",
+      "fixtures": {
+        "com-1": {
+          "skipCount": 0,
+          "loop": true,
+          "imgId": "img-1"
+        },
+        "com-2": {
+          "skipCount": 0,
+          "loop": true,
+          "imgId": "img-2"
+        },
+        "com-3": {
+          "skipCount": 0,
+          "loop": true,
+          "imgId": "img-3"
+        },
+        "com-4": {
+          "skipCount": 0,
+          "loop": true,
+          "imgId": "img-4"
+        },
+        "com-5": {
+          "skipCount": 0,
+          "loop": true,
+          "imgId": "img-5"
+        }
+      }
+    },
+    {
+      "name": "BTN 2",
+      "rate": 20,
+      "hotkey": "1",
+      "fixtures": {
+        "com-1": {
+          "skipCount": 0,
+          "loop": true,
+          "imgId": "img-1"
+        },
+        "com-2": {
+          "skipCount": 0,
+          "loop": true,
+          "imgId": "img-2"
+        },
+        "com-3": {
+          "skipCount": 0,
+          "loop": true,
+          "imgId": "img-3"
+        },
+        "com-4": {
+          "skipCount": 0,
+          "loop": true,
+          "imgId": "img-4"
+        },
+        "com-5": {
+          "skipCount": 0,
+          "loop": true,
+          "imgId": "img-5"
+        }
+      }
+    }
+  ],
+  "fixtures": [
+    { "comName": "com-1", "userName": "lens-1" },
+    { "comName": "com-2", "userName": "lens-2" },
+    { "comName": "com-3", "userName": "lens-3" },
+    { "comName": "com-4", "userName": "below screen" },
+    { "comName": "com-5", "userName": "below ctrls" }
+  ]
+}

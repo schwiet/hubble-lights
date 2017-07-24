@@ -26,9 +26,9 @@ var ClientState = Object.assign( {}, EventEmitter.prototype, {
    */
   addListener: function( callback ){
 
-    this.on( 'SCENE-UPDATE', callback );
+    this.on( 'CLIENT-UPDATE', callback );
 
-    return this.removeListener.bind( this, 'SCENE-UPDATE', callback );
+    return this.removeListener.bind( this, 'CLIENT-UPDATE', callback );
   },
 
   /*
@@ -79,6 +79,6 @@ ClientState.dispatchToken = Dispatcher.register( function( payload ){
   }
 
   if( changed ){
-    ClientState.emit( 'SCENE-UPDATE' );
+    ClientState.emit( 'CLIENT-UPDATE' );
   }
 });

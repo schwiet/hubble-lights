@@ -1,4 +1,5 @@
-var Dispatcher = require( 'flux' ).Dispatcher;                                                                                                                                                          
+var Dispatcher = require( 'flux' ).Dispatcher;
+var Constants  = require( 'hubble-lights/constants' );
 
 const _DEVICE_ACTION_TYPE = 'DEVICE-ACTION-TYPE';
 const _USER_ACTION_TYPE   = 'USER-ACTION-TYPE';
@@ -22,6 +23,16 @@ var AppDispatcher = Object.assign( new Dispatcher(), {
     DEVICE_ACTION_TYPE: _DEVICE_ACTION_TYPE,
     USER_ACTION_TYPE:  _USER_ACTION_TYPE,
     APP_ACTION_TYPE:   _APP_ACTION_TYPE
+  },
+
+  UserActions: {
+
+    playScene: function( scene_obj ){
+      AppDispatcher.handleUserAction({
+        type: Constants.UserEvents.PLAY_SCENE,
+        scene: scene_obj
+      });
+    }
   }
 });
 

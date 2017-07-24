@@ -1,12 +1,12 @@
 .desktop-fixtures{
-  align-items: center; 
+  align-items: stretch; 
   padding-left: 2em;
   padding-right: 2em;
+  padding-bottom: 2em;
 }
 
 .desktop-fixture-entry{
   width: 10em;
-  height: 80%;
   background-color: #bbb;
   border-radius: 12px;
   margin-left: 1.5em;

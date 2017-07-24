@@ -28,7 +28,7 @@ var config = {
     publicPath: '/js'
   },
   devServer: {
-    contentBase: path.resolve( __dirname, './src') 
+    contentBase: path.resolve( __dirname, './dist') 
   },
   resolve: {
     alias: {

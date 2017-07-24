@@ -1,4 +1,4 @@
-'use strict';'use strict';
+'use strict';
 
 var Dispatcher   = require( 'hubble-lights/dispatcher/app-dispatcher' ),
     Constants    = require( 'hubble-lights/constants' ),
@@ -20,7 +20,7 @@ module.exports = ConfigManager;
 //////////////////////////////////////////////////////////////////
 
 try{
-  Config = require( 'hubble-lights/config/hubble-config.json' );
+  Config = require( 'hubble-config/hubble-config.json' );
 
   Config.scenes.forEach( function( scene ){
 

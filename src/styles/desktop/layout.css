@@ -6,6 +6,15 @@
 
 .desk-layout-selected-scene{
   height: 7em;
+  display: flex;
+  align-items: center;
+  padding-left: 3.5em;
+  
+  color: white;
+}
+
+.desk-layout-scene-info-elem{
+  padding-right: 2em;
 }
 
 .desk-layout-fixtures{

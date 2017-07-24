@@ -6,6 +6,7 @@ import ReactDom from 'react-dom';
 
 import Scenes from 'hubble-lights/stores/scenes';
 import Fixtures from 'hubble-lights/stores/blinky-manager';
+import Client from 'hubble-lights/stores/client-state';
 
 import DesktopLayout from 'hubble-lights/components/desktop/layout';
 
@@ -17,7 +18,8 @@ class HubbleUi extends React.Component {
     super();
     this.state =  {
       scenes: Scenes.getScenes(),
-      fixtures: Fixtures.getDevices()
+      fixtures: Fixtures.getDevices(),
+      selectedScene: null
     }
   }
 
@@ -30,6 +32,13 @@ class HubbleUi extends React.Component {
     Fixtures.addListener( () => {
       this.setState({ fixtures: Fixtures.getDevices() });
     });
+
+    Client.addListener( () => {
+      
+      this.setState({
+        selectedScene: Client.getSelectedScene()
+      });
+    });
   }
 
   render(){
@@ -38,7 +47,8 @@ class HubbleUi extends React.Component {
     return(
       <DesktopLayout
         scenes={this.state.scenes}
-        fixtures={this.state.fixtures}/>
+        fixtures={this.state.fixtures}
+        selectedScene={this.state.selectedScene}/>
     );
   }
 };

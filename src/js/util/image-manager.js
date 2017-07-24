@@ -2,6 +2,7 @@
 
 var Dispatcher   = require( 'hubble-lights/dispatcher/app-dispatcher' ),
     Constants    = require( 'hubble-lights/constants' ),
+    Process      = require( 'process' ),
     Jimp         = require( 'jimp' );
 
 // STATE
@@ -19,7 +20,7 @@ var ImageManager = {
     return _img_buffers[ img_name ] || null;
   },
 
-  IMG_PATH: 'images/'
+  IMG_PATH: Process.cwd()+'config/images/';
 };
 module.exports = ImageManager;
 

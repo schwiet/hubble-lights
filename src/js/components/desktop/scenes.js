@@ -11,12 +11,21 @@ class Scenes extends React.Component{
 
   render(){
 
+    var that = this;
+      console.log( 'selected!', this.props.selectedScene );
+
     console.log("SCENES:", this.props.scenes );
     let scenes = this.props.scenes.map( ( scene, index ) => {
-      console.log('drawing scene', scene.name);
+
+      var class_text = 'desktop-scenes-entry';
+
+      if( scene.name === that.props.selectedScene ){
+        
+        class_text = 'desktop-scenes-entry selected';
+      }
 
       return(
-        <div key={index} className='desktop-scenes-entry'>
+        <div key={index} className={class_text}>
           <Scene
             scene={scene}
             index={index}/>
@@ -33,7 +42,8 @@ class Scenes extends React.Component{
 };
 
 Scenes.propTypes = {
-  scenes: PropTypes.array.isRequired
+  scenes: PropTypes.array.isRequired,
+  selectedScene: PropTypes.string
 };
 
 module.exports = Scenes;
