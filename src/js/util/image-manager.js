@@ -60,13 +60,15 @@ _load_img = function( filename ){
 
       if( idx === total_expected ){
 
-        Dispatcher.handleAppAction({
-          type: Constants.AppEvents.IMAGE_LOADED,
-          img: filename
-        });
+        _img_buffers[ filename ] = frames;
+        Dispatcher.AppActions.imageLoaded(
+          filename,
+          ImageManager.IMG_PATH + filename,
+          img.bitmap.width,
+          img.bitmap.height
+        );
       }
 
-      _img_buffers[ filename ] = frames;
     });
   }).catch( function( err ){
 
@@ -97,7 +99,7 @@ _handle_user_evt = function( evt ){
   switch( evt.type ){
 
   case Constants.UserEvents.SCENE_ADDED:
-    //_skim_scene( evt.scene );
+    _skim_scene( evt.scene );
     break;
   }
 };

@@ -33,6 +33,19 @@ var AppDispatcher = Object.assign( new Dispatcher(), {
         scene: scene_obj
       });
     }
+  },
+
+  AppActions: {
+
+    imageLoaded: function( img_id, img_path, width, height ){
+      AppDispatcher.handleAppAction({
+        type: Constants.AppEvents.IMAGE_LOADED,
+        imgId: img_id,
+        imgPath: img_path,
+        width: width,
+        height: height
+      });
+    }
   }
 });
 

@@ -14,6 +14,15 @@ jest.mock( 'jimp', function(){
   }
 });
 
+jest.mock( 'fs', function(){
+
+  return {
+
+    existsSync: jest.fn( function(){ return false; } ),
+    readdirSync: jest.fn()
+  };
+});
+
 var Constants = require( 'hubble-lights/constants' );
 
 describe( 'Image Manager', function(){
@@ -82,12 +91,10 @@ describe( 'Image Manager', function(){
       }
     }
 
-    expect( dispatcher.handleAppAction.mock.calls.length ).toBe( 1 );
-    expect( dispatcher.handleAppAction ).toBeCalledWith({
-      type: Constants.AppEvents.IMAGE_LOADED, img: 'img-id'
-    });
-
     expect( imgMgr.getRgbFrames( 'img-id' ).length ).toBe( 10 );
     expect( imgMgr.getRgbFrames( 'img-id' )[0].length ).toBe( 5 );
+
+    expect( dispatcher.AppActions.imageLoaded ).toBeCalledWith(
+        'img-id', imgMgr.IMG_PATH + 'img-id', 10, 5 );
   });
 });
