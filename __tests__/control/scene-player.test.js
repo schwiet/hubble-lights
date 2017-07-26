@@ -10,6 +10,8 @@ describe( 'Scene Player', function(){
 
   beforeEach( function(){
 
+    jest.resetModules();
+
     jest.useFakeTimers();
 
     dispatcher = require( 'hubble-lights/dispatcher/app-dispatcher' );
