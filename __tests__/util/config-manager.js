@@ -44,7 +44,7 @@ describe( 'Config Manager', function(){
   describe( 'loading config file', function(){
     beforeEach( function(){
       
-      jest.mock( 'hubble-lights/config/hubble-config.json', function(){
+      jest.mock( 'hubble-config/hubble-config.json', function(){
 
         return {
           scenes: [
