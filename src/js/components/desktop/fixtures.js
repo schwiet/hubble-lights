@@ -29,8 +29,14 @@ class Fixtures extends React.Component{
                };
                Dispatcher.UserActions.playScene( scene );
              }}>
-          <h2>Light {index+1}</h2>
-          <h3>{fixture.name}</h3>
+          <div className='fixture-name'>
+            <h2>Light {index+1}</h2>
+            <h3>{fixture.name}</h3>
+          </div>
+          <div className='fixure-config'>
+          </div>
+          <div className='fixture-img'>
+          </div>
         </div>
       );
     });
@@ -44,6 +50,7 @@ class Fixtures extends React.Component{
 };
 
 Fixtures.propTypes = {
+  images:        PropTypes.object.isRequired,
   fixtures:      PropTypes.array.isRequired,
   selectedScene: PropTypes.object
 };

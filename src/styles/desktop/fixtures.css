@@ -6,9 +6,23 @@
 }
 
 .desktop-fixture-entry{
+  display: flex;
+  flex-direction: column;
   width: 10em;
   background-color: #bbb;
   border-radius: 12px;
   margin-left: 1.5em;
   margin-right: 1.5em;
+  padding-left: 1.5em;
+  padding-right: 1.5em;
+}
+
+.fixture-name{
+  height: 4em;
+}
+.fixture-config{
+  flex: 1;
+}
+.fixture-img{
+  height: 8em;
 }

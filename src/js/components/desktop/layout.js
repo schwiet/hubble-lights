@@ -70,7 +70,8 @@ class Layout extends React.Component {
         {sceneElem}
         <div className='desk-layout-fixtures'>
           <Fixtures
-            fixtures={this.props.fixtures}/>
+            fixtures={this.props.fixtures}
+            images={this.props.images}/>
         </div>
       </div>
     );
@@ -79,6 +80,7 @@ class Layout extends React.Component {
 
 Layout.propTypes = {
 
+  images:   PropTypes.object.isRequired,
   scenes:   PropTypes.array.isRequired,
   fixtures: PropTypes.array.isRequired,
   selectedScene: PropTypes.string

@@ -24,7 +24,8 @@
     "prepack": "./clean-node-webkit.sh",
     "build": "babel src/js/ --out-dir nwjs/js/",
     "prebuild": "./clean-node-webkit.sh && npm run bb",
-    "bb": "babel src/js/ --out-dir nwjs/js/"
+    "bb": "babel src/js/ --out-dir nwjs/js/",
+    "cpcss": "cat src/styles/app-styles.css src/styles/**/*.css > nwjs/styles/styles.css"
   },
   "author": "Seth Schwiet <seth.schwiet@gmail.com>",
   "license": "ISC",

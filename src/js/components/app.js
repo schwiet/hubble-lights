@@ -4,6 +4,7 @@ import React from 'react';
 import ReactDom from 'react-dom';
 //import styles from 'hubble-styles/app-styles.css';
 
+import Images from 'hubble-lights/stores/images';
 import Scenes from 'hubble-lights/stores/scenes';
 import Fixtures from 'hubble-lights/stores/blinky-manager';
 import Client from 'hubble-lights/stores/client-state';
@@ -17,6 +18,7 @@ class HubbleUi extends React.Component {
   constructor(){
     super();
     this.state =  {
+      images: Images.getImages(),
       scenes: Scenes.getScenes(),
       fixtures: Fixtures.getDevices(),
       selectedScene: null
@@ -24,6 +26,10 @@ class HubbleUi extends React.Component {
   }
 
   componentDidMount(){
+
+    Images.addListener( () => {
+      this.setState({ images: Images.getImages() });
+    });
 
     Scenes.addListener( () => {
       this.setState({ scenes: Scenes.getScenes() });
@@ -34,7 +40,6 @@ class HubbleUi extends React.Component {
     });
 
     Client.addListener( () => {
-      
       this.setState({
         selectedScene: Client.getSelectedScene()
       });
@@ -46,6 +51,7 @@ class HubbleUi extends React.Component {
     //TODO: this would be the place to change the layout
     return(
       <DesktopLayout
+        images={this.state.images}
         scenes={this.state.scenes}
         fixtures={this.state.fixtures}
         selectedScene={this.state.selectedScene}/>
