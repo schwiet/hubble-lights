@@ -15,9 +15,13 @@ module.exports = {
     SCENE_EDIT_FIXTURE: null,
 
     FIXTURE_EDIT_NAME: null,
+    FIXTURE_EDIT_IMG:  null,
 
-    SELECT_SCENE: null,
-    PLAY_SCENE: null
+    SELECT_SCENE:      null,
+    SELECT_FIXTURE:    null,
+    PLAY_SCENE:        null,
+
+    SHOW_IMAGES:       null
   }),
 
   AppEvents: keymirror({

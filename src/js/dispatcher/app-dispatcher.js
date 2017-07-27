@@ -32,6 +32,17 @@ var AppDispatcher = Object.assign( new Dispatcher(), {
         type: Constants.UserEvents.PLAY_SCENE,
         scene: scene_obj
       });
+    },
+    selectFixture: function( comName ){
+      AppDispatcher.handleUserAction({
+        type: Constants.UserEvents.SELECT_FIXTURE,
+        comName: comName
+      });
+    },
+    showImages: function(){
+      AppDispatcher.handleUserAction({
+        type: Constants.UserEvents.SHOW_IMAGES,
+      });
     }
   },
 

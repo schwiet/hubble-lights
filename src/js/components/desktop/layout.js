@@ -71,7 +71,8 @@ class Layout extends React.Component {
         <div className='desk-layout-fixtures'>
           <Fixtures
             fixtures={this.props.fixtures}
-            images={this.props.images}/>
+            images={this.props.images}
+            selectedScene={currentScene}/>
         </div>
       </div>
     );

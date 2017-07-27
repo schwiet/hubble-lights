@@ -175,4 +175,37 @@ describe( 'Scenes', function(){
     expect( fixture.loop ).toBe( false ); 
     expect( fixture.imgId ).toBe( 'different' ); 
   });
+
+  it( 'should handle FIXTURE_EDIT_IMG event even', function(){
+
+    var scene_entries, fixture,
+        fixture_scene = {
+      name: 'a-name',
+      fixtures: {
+        'a-fixture': { imdId: 'original' }
+      }
+    };
+
+    evt_callback({
+      type: dispatcher.ActionTypes.USER_ACTION_TYPE,
+      action:{
+        type: Constants.UserEvents.SCENE_ADDED,
+        scene: fixture_scene }});
+
+    evt_callback({
+      type: dispatcher.ActionTypes.USER_ACTION_TYPE,
+      action:{
+        type: Constants.UserEvents.FIXTURE_EDIT_IMG,
+        sceneName: 'a-name',
+        fixtureName: 'a-fixture',
+        imgId:       'new-img'
+      }
+    });
+
+    expect( listener.mock.calls.length ).toBe( 2 );
+
+    scene_entries = scenes.getScenes();
+    fixture = scene_entries[ 0 ].fixtures[ 'a-fixture' ];
+    expect( fixture.imgId ).toBe( 'new-img' ); 
+  });
 });

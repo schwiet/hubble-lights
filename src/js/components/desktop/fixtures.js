@@ -10,9 +10,25 @@ class Fixtures extends React.Component{
 
   render(){
 
+    let img_path, that = this;
+
     console.log("FIXTURES:", this.props.fixtures );
     let fixtures = this.props.fixtures.map( ( fixture, index ) => {
-      console.log('drawing fixture', fixture.name);
+
+      var _debug_class='test!';
+      var img_style = {
+        backgroundSize: "100% 100%",
+        backgroundRepeat: "no-repeat"
+      };
+      if( that.props.selectedScene ){
+        console.log( that.props.images, that.props.selectedScene);
+        img_path = that.props.images[
+          that.props.selectedScene.fixtures[ fixture.comName ].imgId
+        ].path;
+
+        img_style.backgroundImage = 'url(file://'+img_path+')';
+        _debug_class = img_path;
+      }
 
       return(
         <div key={index} className='desktop-fixture-entry'
@@ -30,12 +46,13 @@ class Fixtures extends React.Component{
                Dispatcher.UserActions.playScene( scene );
              }}>
           <div className='fixture-name'>
-            <h2>Light {index+1}</h2>
+            <h2 className={_debug_class}>Light {index+1}</h2>
             <h3>{fixture.name}</h3>
           </div>
           <div className='fixure-config'>
           </div>
-          <div className='fixture-img'>
+          <div className='fixture-img'
+               style={img_style}>
           </div>
         </div>
       );

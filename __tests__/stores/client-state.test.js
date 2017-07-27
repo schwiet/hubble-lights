@@ -41,4 +41,51 @@ describe( 'Scenes', function(){
     expect( listener ).toBeCalled();
     expect( clientState.getSelectedScene() ).toBe( 'scene-1' );
   });
+
+  it( 'should handle SELECT_FIXTURE events', function(){
+    
+    evt_callback({
+      type: dispatcher.ActionTypes.USER_ACTION_TYPE,
+      action:{
+        type: Constants.UserEvents.SELECT_FIXTURE,
+        comName: 'testCom'
+      }
+    });
+
+    expect( listener ).toBeCalled();
+    expect( clientState.getSelectedFixture() ).toBe( 'testCom' );
+  });
+
+  it( 'should handle SHOW_IMAGES events', function(){
+    
+    evt_callback({
+      type: dispatcher.ActionTypes.USER_ACTION_TYPE,
+      action:{
+        type: Constants.UserEvents.SHOW_IMAGES
+      }
+    });
+
+    expect( listener ).toBeCalled();
+    expect( clientState.areImagesShowing() ).toBe( true );
+  });
+
+  it( 'should handle FIXTURE_EDIT_IMG events', function(){
+
+     evt_callback({
+      type: dispatcher.ActionTypes.USER_ACTION_TYPE,
+      action:{
+        type: Constants.UserEvents.SHOW_IMAGES
+      }
+    });   
+
+    evt_callback({
+      type: dispatcher.ActionTypes.USER_ACTION_TYPE,
+      action:{
+        type: Constants.UserEvents.FIXTURE_EDIT_IMG
+      }
+    });
+
+    expect( listener ).toBeCalled();
+    expect( clientState.areImagesShowing() ).toBe( false );
+  });
 });

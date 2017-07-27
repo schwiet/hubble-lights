@@ -140,6 +140,25 @@ _handle_user_evt = function( evt ){
       console.log( "WARN - SCENES: Do not have a record of Scene:", evt.name );
     }
     break;
+  case Constants.UserEvents.FIXTURE_EDIT_IMG:
+    
+    // get the specified scene and update the fixture porperty, if it exists
+    scene = _get_scene_by_name( evt.sceneName );
+
+    if( scene ){
+      fixture = scene.fixtures[ evt.fixtureName ];
+
+      //if we have do not have such a fixture configuration, add a default
+      if( !fixture ){
+        fixture = { name: evt.fixtureName, loop: true, skipCount: 0 };
+        scene.fixtures[ evt.fixtureName ] = fixture;
+      }
+
+      // update the image
+      fixture.imgId = evt.imgId;
+      changed = true;
+    }
+    break;
   }
 
   return changed;

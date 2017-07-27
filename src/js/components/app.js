@@ -21,7 +21,9 @@ class HubbleUi extends React.Component {
       images: Images.getImages(),
       scenes: Scenes.getScenes(),
       fixtures: Fixtures.getDevices(),
-      selectedScene: null
+      selectedScene: null,
+      selectedFixture: null,
+      areImagesShowing: false
     }
   }
 
@@ -41,7 +43,9 @@ class HubbleUi extends React.Component {
 
     Client.addListener( () => {
       this.setState({
-        selectedScene: Client.getSelectedScene()
+        selectedScene:    Client.getSelectedScene(),
+        selectedFixture:  Client.getSelectedFixture(),
+        areImagesShowing: Client.areImagesShowing()
       });
     });
   }
@@ -54,7 +58,9 @@ class HubbleUi extends React.Component {
         images={this.state.images}
         scenes={this.state.scenes}
         fixtures={this.state.fixtures}
-        selectedScene={this.state.selectedScene}/>
+        selectedScene={this.state.selectedScene}
+        selectedFixture={this.state.selectedFixture}
+        areImagesShowing={this.state.areImagesShowing}/>
     );
   }
 };
