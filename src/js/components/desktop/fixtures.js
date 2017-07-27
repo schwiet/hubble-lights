@@ -10,7 +10,7 @@ class Fixtures extends React.Component{
 
   render(){
 
-    let img_path, that = this;
+    let img_path, that = this, clickImg;
 
     console.log("FIXTURES:", this.props.fixtures );
     let fixtures = this.props.fixtures.map( ( fixture, index ) => {
@@ -21,6 +21,12 @@ class Fixtures extends React.Component{
         backgroundRepeat: "no-repeat"
       };
       if( that.props.selectedScene ){
+
+        clickImg = () => {
+          Dispatcher.UserActions.selectFixture( fixture.comName );
+          Dispatcher.UserActions.showImages();
+        };
+
         console.log( that.props.images, that.props.selectedScene);
         img_path = that.props.images[
           that.props.selectedScene.fixtures[ fixture.comName ].imgId
@@ -49,10 +55,11 @@ class Fixtures extends React.Component{
             <h2 className={_debug_class}>Light {index+1}</h2>
             <h3>{fixture.name}</h3>
           </div>
-          <div className='fixure-config'>
+          <div className='fixture-config'>
           </div>
           <div className='fixture-img'
-               style={img_style}>
+               style={img_style}
+               onClick={clickImg}>
           </div>
         </div>
       );

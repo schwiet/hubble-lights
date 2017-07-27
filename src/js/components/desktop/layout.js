@@ -27,7 +27,9 @@ class Layout extends React.Component {
   render(){
 
     var currentScene = null, that = this,
-        sceneElem = this.promptElem;
+        sceneElem = this.promptElem,
+        topClass = this.props.areImagesShowing ?
+                     'layout-flex-rows images-showing' : 'layout-flex-rows';
 
     this.props.scenes.some( ( scene ) => {
 
@@ -61,7 +63,7 @@ class Layout extends React.Component {
     });
 
     return (
-      <div className='layout-flex-rows'>
+      <div className={topClass}>
         <div className='desk-layout-scenes'>
           <Scenes
             scenes={this.props.scenes}
@@ -73,6 +75,8 @@ class Layout extends React.Component {
             fixtures={this.props.fixtures}
             images={this.props.images}
             selectedScene={currentScene}/>
+        </div>
+        <div className='desk-layout-images-overlay translucent'>
         </div>
       </div>
     );
