@@ -26,8 +26,18 @@
   height: 4em;
 }
 .fixture-config{
+  
+}
+.fixture-img-container{
   flex: 1;
+  position: relative;
+  overflow: hidden;
 }
 .fixture-img{
-  height: 8em;
+  position: absolute;
+  top: -17px;
+  bottom: -17px;
+  left: -17px;
+  right: -17px;
+  filter: blur(12px);
 }

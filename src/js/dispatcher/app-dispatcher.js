@@ -43,7 +43,15 @@ var AppDispatcher = Object.assign( new Dispatcher(), {
       AppDispatcher.handleUserAction({
         type: Constants.UserEvents.SHOW_IMAGES,
       });
-    }
+    },
+    editSceneImg: function( sceneName, comName, imgId ){
+      AppDispatcher.handleUserAction({
+        type: Constants.UserEvents.FIXTURE_EDIT_IMG,
+        fixtureName: comName,
+        sceneName: sceneName,
+        imgId: imgId 
+      });
+    },
   },
 
   AppActions: {

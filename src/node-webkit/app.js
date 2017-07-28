@@ -72,4 +72,5 @@ nw.Window.open( 'index.html', {}, function(win){
 //  win.hide();
   win.showDevTools();
   win.menu = menu;
+  win.resizeTo( 800, 600 );
 });

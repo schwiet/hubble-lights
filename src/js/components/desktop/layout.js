@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 
 //import styles from 'styles/desktop/layout.css';
 
+import Images from 'hubble-lights/components/desktop/images';
 import Scenes from 'hubble-lights/components/desktop/scenes';
 import Fixtures from 'hubble-lights/components/desktop/fixtures';
 import Dispatcher from 'hubble-lights/dispatcher/app-dispatcher';
@@ -28,8 +29,20 @@ class Layout extends React.Component {
 
     var currentScene = null, that = this,
         sceneElem = this.promptElem,
-        topClass = this.props.areImagesShowing ?
-                     'layout-flex-rows images-showing' : 'layout-flex-rows';
+        imgsElem  = null,
+        topClass = 'layout-flex-rows';
+
+    if( this.props.areImagesShowing ){
+
+      imgsElem = (
+        <Images
+          images={this.props.images}
+          selectedScene={this.props.selectedScene}
+          selectedFixture={this.props.selectedFixture}/>
+      );
+
+      topClass = 'layout-flex-rows images-showing';
+    }
 
     this.props.scenes.some( ( scene ) => {
 
@@ -77,6 +90,7 @@ class Layout extends React.Component {
             selectedScene={currentScene}/>
         </div>
         <div className='desk-layout-images-overlay translucent'>
+          {imgsElem}
         </div>
       </div>
     );
@@ -88,7 +102,8 @@ Layout.propTypes = {
   images:   PropTypes.object.isRequired,
   scenes:   PropTypes.array.isRequired,
   fixtures: PropTypes.array.isRequired,
-  selectedScene: PropTypes.string
+  selectedScene: PropTypes.string,
+  selectedFixture: PropTypes.string
 };
 
 module.exports = Layout;

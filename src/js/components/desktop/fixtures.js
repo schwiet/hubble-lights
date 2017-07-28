@@ -18,7 +18,7 @@ class Fixtures extends React.Component{
       var _debug_class='test!';
       var img_style = {
         backgroundSize: "100% 100%",
-        backgroundRepeat: "no-repeat"
+        backgroundRepeat: "repeat"
       };
       if( that.props.selectedScene ){
 
@@ -57,9 +57,11 @@ class Fixtures extends React.Component{
           </div>
           <div className='fixture-config'>
           </div>
-          <div className='fixture-img'
-               style={img_style}
-               onClick={clickImg}>
+          <div className='fixture-img-container'>
+            <div className='fixture-img'
+                 style={img_style}
+                 onClick={clickImg}>
+            </div>
           </div>
         </div>
       );
