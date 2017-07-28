@@ -10,14 +10,14 @@ class Fixtures extends React.Component{
 
   render(){
 
-    let img_path, that = this, clickImg;
+    let img_path, that = this, clickImg, top_class, click_fn;
 
     console.log("FIXTURES:", this.props.fixtures );
     let fixtures = this.props.fixtures.map( ( fixture, index ) => {
 
       var _debug_class='test!';
       var img_style = {
-        backgroundSize: "100% 100%",
+        backgroundSize: fixture.width+'px '+fixture.height+'px',
         backgroundRepeat: "repeat"
       };
       if( that.props.selectedScene ){
@@ -36,8 +36,17 @@ class Fixtures extends React.Component{
         _debug_class = img_path;
       }
 
+      if( that.props.selectedFixture &&
+        fixture.comName === that.props.selectedFixture ){
+        top_class = 'desktop-fixture-outer selected';
+      }
+      else{
+        top_class = 'desktop-fixture-outer lite-bg '+that.props.selectedFixture;
+      }
+
       return(
-        <div key={index} className='desktop-fixture-entry'
+        <div key={index} className={top_class}>
+          <div className='desktop-fixture-entry'
              onClick={()=>{
                var scene = {
                  name: ('show-' + fixture.name),
@@ -51,16 +60,18 @@ class Fixtures extends React.Component{
                };
                Dispatcher.UserActions.playScene( scene );
              }}>
-          <div className='fixture-name'>
-            <h2 className={_debug_class}>Light {index+1}</h2>
-            <h3>{fixture.name}</h3>
-          </div>
-          <div className='fixture-config'>
-          </div>
-          <div className='fixture-img-container'>
-            <div className='fixture-img'
-                 style={img_style}
-                 onClick={clickImg}>
+            <div className='fixture-name'>
+              <h2 className={_debug_class}>Light {index+1}</h2>
+              <h3>{fixture.name}</h3>
+            </div>
+            <div className='fixture-config'>
+            </div>
+            <div className='fixture-img-container'>
+              <div className='fixture-img'
+                   style={img_style}>
+              </div>
+              <div className='fixture-img-overlay'
+                   onClick={clickImg}></div>
             </div>
           </div>
         </div>
@@ -68,7 +79,7 @@ class Fixtures extends React.Component{
     });
 
     return(
-      <div className='desktop-fixtures layout-flex-columns'>
+      <div className='desktop-fixtures layout-flex-rows'>
         {fixtures}
       </div>
     );
@@ -76,9 +87,10 @@ class Fixtures extends React.Component{
 };
 
 Fixtures.propTypes = {
-  images:        PropTypes.object.isRequired,
-  fixtures:      PropTypes.array.isRequired,
-  selectedScene: PropTypes.object
+  images:          PropTypes.object.isRequired,
+  fixtures:        PropTypes.array.isRequired,
+  selectedScene:   PropTypes.object,
+  selectedFixture: PropTypes.string
 };
 
 module.exports = Fixtures;

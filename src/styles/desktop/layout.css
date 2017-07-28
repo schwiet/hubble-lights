@@ -21,7 +21,6 @@
 
 .desk-layout-scenes{
   height: 7em;
-  background-color: white;
   position: relative;
 }
 
@@ -41,4 +40,13 @@
 .desk-layout-fixtures{
   flex: 1;
   position: relative;
+}
+
+.round-button{
+
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 12px;
+  cursor: pointer;
+  padding: 1em;
 }

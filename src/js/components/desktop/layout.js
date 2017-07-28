@@ -30,7 +30,7 @@ class Layout extends React.Component {
     var currentScene = null, that = this,
         sceneElem = this.promptElem,
         imgsElem  = null,
-        topClass = 'layout-flex-rows';
+        topClass = 'layout-flex-rows dark-bg';
 
     if( this.props.areImagesShowing ){
 
@@ -41,7 +41,7 @@ class Layout extends React.Component {
           selectedFixture={this.props.selectedFixture}/>
       );
 
-      topClass = 'layout-flex-rows images-showing';
+      topClass += ' images-showing';
     }
 
     this.props.scenes.some( ( scene ) => {
@@ -77,17 +77,18 @@ class Layout extends React.Component {
 
     return (
       <div className={topClass}>
-        <div className='desk-layout-scenes'>
+        <div className='desk-layout-scenes lite-bg'>
           <Scenes
             scenes={this.props.scenes}
             selectedScene={this.props.selectedScene}/>
         </div>
         {sceneElem}
-        <div className='desk-layout-fixtures'>
+        <div className='desk-layout-fixtures '>
           <Fixtures
             fixtures={this.props.fixtures}
             images={this.props.images}
-            selectedScene={currentScene}/>
+            selectedScene={currentScene}
+            selectedFixture={this.props.selectedFixture}/>
         </div>
         <div className='desk-layout-images-overlay translucent'>
           {imgsElem}
