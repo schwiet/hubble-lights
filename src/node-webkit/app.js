@@ -70,7 +70,7 @@ menu.append( new nw.MenuItem({
 nw.Window.open( 'index.html', {}, function(win){
   console.log("loaded" );
 //  win.hide();
-  win.showDevTools();
+//  win.showDevTools();
   win.menu = menu;
   win.resizeTo( 800, 600 );
 });

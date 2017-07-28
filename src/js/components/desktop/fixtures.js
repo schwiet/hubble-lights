@@ -38,7 +38,8 @@ class Fixtures extends React.Component{
 
       if( that.props.selectedFixture &&
         fixture.comName === that.props.selectedFixture ){
-        top_class = 'desktop-fixture-outer selected';
+        //top_class = 'desktop-fixture-outer selected';
+        top_class = 'desktop-fixture-outer lite-bg ';
       }
       else{
         top_class = 'desktop-fixture-outer lite-bg '+that.props.selectedFixture;

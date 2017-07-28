@@ -10,7 +10,7 @@ var rl = readline.createInterface({
 
 dispatcher.register( function( payload ){
 
-  console.log( '\n\nEVT:', payload );
+  //console.log( '\n\nEVT:', payload );
 });
 
 (function askForScene(){
